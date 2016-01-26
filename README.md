@@ -199,6 +199,14 @@ There are two classes of concern if you're using any of the Parse SDKs.
 - `LGA` These are the local government areas. A city is just a local government area with `city = true`.
 
 
+Testing
+--------------------
+Run the command 
+```
+$ python -m unittest discover tests
+```
+
+
 Contributing
 --------------------
 

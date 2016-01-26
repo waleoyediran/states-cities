@@ -2,6 +2,7 @@ from parse_rest.datatypes import Object
 from parse_rest.query import QueryResourceDoesNotExist
 from app.mod_endpoints.exceptions import InvalidAPIUsage
 
+
 class State(Object):
     def as_dict(self):
         return {
@@ -15,7 +16,6 @@ class State(Object):
             'maxLong': self.max_longitude
         }
 
-
     @classmethod
     def find_by_name_or_code(cls,state_name_or_code):
         try:
@@ -27,14 +27,15 @@ class State(Object):
         except QueryResourceDoesNotExist, e:
             raise InvalidAPIUsage("State with state name or code '{}' does not exist".format(state_name_or_code), status_code=404)
 
-    @staticmethod
-    def get_all_states():
-        return [ state.as_dict() for state in State.Query.all() ]
 
-    @staticmethod
-    def get_one_state(state_name_or_code):
-        _state_ = State.find_by_name_or_code(state_name_or_code)
-        return _state_.as_dict()
+def get_all_states():
+    return [ state.as_dict() for state in State.Query.all() ]
+
+
+def get_one_state(state_name_or_code):
+    _state_ = State.find_by_name_or_code(state_name_or_code)
+    # print _state_
+    return _state_.as_dict()
 
 class LGA(Object):
     def as_dict(self):
