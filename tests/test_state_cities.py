@@ -57,6 +57,9 @@ class StateCitiesTestCase(unittest.TestCase):
         result = self.app.get('/api/v1/state/yaba')
         self.assertEqual(result.status_code, 404)
 
+        message = json.loads(result.data)
+        self.assertDictEqual(message, {"message": "State with state name or code 'yaba' does not exist"})
+
 
 if __name__ == '__main__':
     unittest.main()
